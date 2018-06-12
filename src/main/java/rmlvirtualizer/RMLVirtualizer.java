@@ -35,7 +35,7 @@ public class RMLVirtualizer {
 	 */
 	public String virtualize(String mappingContent, String baseIRI, RDFFormat outputFormat) {
 	      String rdfVirtualized = null;
-	      
+	     
 	      try {
 		      // Creating engine    	
 		      StdRMLEngine engine = new StdRMLEngine();
