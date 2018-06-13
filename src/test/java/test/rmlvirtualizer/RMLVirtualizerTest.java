@@ -1,9 +1,11 @@
-package rmlvirtualizer;
+package test.rmlvirtualizer;
+
 
 import org.eclipse.rdf4j.rio.RDFFormat;
-import org.junit.Assert;
 import org.junit.Test;
 
+import junit.framework.Assert;
+import rmlvirtualizer.RMLVirtualizer;
 
 
 /**
@@ -27,7 +29,7 @@ public class RMLVirtualizerTest {
     				"\n" + 
     				"<#AirportMapping>\n" + 
     				"  rml:logicalSource [\n" + 
-    				"    rml:source \"./src/test/resources/test1-RMLVirtualizer/example.csv\" ;\n" + 
+    				"    rml:source \"./src/test/resources/test1-rmlvirtualizer.csv\" ;\n" + 
     				"    rml:referenceFormulation ql:CSV \n" + 
     				"  ];\n" + 
     				"  rr:subjectMap [\n" + 
@@ -67,8 +69,16 @@ public class RMLVirtualizerTest {
         		"	<http://www.w3.org/2003/01/geo/wgs84_pos#long> \"4.484444\" ;\n" + 
         		"	<http://www.w3.org/2003/01/geo/wgs84_pos#lat> \"50.901389\" ;\n" + 
         		"	<http://vocab.org/transit/terms/route> \"25\"^^<http://www.w3.org/2001/XMLSchema#int> .";
-      
-        Assert.assertEquals(virtualizedRDF.replace(" ", ""), desiredResult.replace(" ", ""));
+        
+       
+        Boolean aggregator = true & !virtualizedRDF.isEmpty();
+        String[] lines = virtualizedRDF.split("\n");
+        for(int index=0; index<lines.length; index++) {
+        		String line = lines[index].trim();
+        		aggregator &= desiredResult.contains(line);
+        }
+        	
+        	Assert.assertTrue(aggregator);
     }
 	
 }
