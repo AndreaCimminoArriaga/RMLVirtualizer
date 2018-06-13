@@ -1,4 +1,4 @@
-package test.rmlvirtualizer;
+package rmlvirtualizer;
 
 import org.eclipse.rdf4j.rio.RDFFormat;
 import org.junit.Test;
